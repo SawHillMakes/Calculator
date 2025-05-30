@@ -58,41 +58,51 @@ let clickedNumberTwo = '';
 let clickedOperators = '';
 let clearingNumber = 0;
 
+
+let whenBtnClicked = function(btnClicked)
+{
+    if(btnClicked < 10 && clickedNumberTwo === '' && clickedOperators === '')
+    {
+        clickedNumberOne += `${btnClicked}`;
+        display.textContent = `${clickedNumberOne}`;
+    }
+    else if(btnClicked < 10 && clickedNumberOne !== '' && clickedOperators !== '')
+    {
+        clickedNumberTwo += `${btnClicked}`;
+        display.textContent = `${clickedNumberTwo}`;
+    }
+    else if(btnClicked > 9 && clickedNumberOne !== '' && clickedNumberTwo === '' && btnClicked !== 16 && btnClicked !== 14 && btnClicked !== 13)
+    {
+        clickedOperators = '';
+        clickedOperators += `${btnClicked}`;
+    }
+    else if(btnClicked === 14 && clickedNumberTwo !== '')
+    {
+        result = operate(clickedNumberOne, clickedOperators, clickedNumberTwo);
+        display.textContent = `${result}`;
+        clickedNumberOne = `${result}`;
+        clickedNumberTwo = ``;
+        clickedOperators = ``;
+    }
+    else if(btnClicked === 16)
+    {
+        clickedNumberOne = '';
+        clickedNumberTwo = '';
+        clickedOperators = '';
+        display.textContent = `0`;
+    }
+    else if(btnClicked === 13)
+    {
+        display.textContent = `${HEllO}`;
+    }
+}
+
+
 for(let i = 0; i < 17; i++)
 {
     let buttons = document.querySelector(`.btn${i}`);
     buttons.addEventListener("click", ()=>
     {
-        if(i < 10 && clickedNumberTwo === '' && clickedOperators === '')
-        {
-            clickedNumberOne += `${i}`;
-            display.textContent = `${clickedNumberOne}`;
-        }
-        if(i > 9 && clickedNumberOne !== '' && clickedNumberTwo ==='')
-        {
-            clickedOperators = '';
-            clickedOperators += i;
-                    if(i === 16)
-                        {
-                        clickedNumberOne = '';
-                        clickedNumberTwo = '';
-                        clickedOperators = '';
-                        display.textContent = `0`;
-                        }
-                    
-        return;
-        }
-        if(i < 10 && clickedOperators !== '' && clickedNumberOne !== '')
-        {
-            clickedNumberTwo += `${i}`;
-            display.textContent = `${clickedNumberTwo}`;
-        }
-        if(i === 14)
-        {   
-            display.textContent = `${operate(clickedNumberOne, clickedOperators, clickedNumberTwo)}`;
-            clickedNumberOne = `${operate(clickedNumberOne, clickedOperators, clickedNumberTwo)}`;
-            clickedNumberTwo = ``;
-            clickedOperators = ``;
-        }
+        whenBtnClicked(i);
     });
 }
