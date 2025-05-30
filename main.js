@@ -17,7 +17,7 @@ let division = function (num1, num2)
 {
     if(num2 === 0)
     {
-        return "Error";
+        return "No dividing by zero!";
     }
     return num1 / num2;
 }
@@ -51,13 +51,14 @@ let operate = function (number1, operator, number2)
     }
 }
 
+
 let display = document.querySelector("#display");
 let clickedNumberOne = '';
 let clickedNumberTwo = '';
 let clickedOperators = '';
 let clearingNumber = 0;
 
-for(let i = 0; i < 16; i++)
+for(let i = 0; i < 17; i++)
 {
     let buttons = document.querySelector(`.btn${i}`);
     buttons.addEventListener("click", ()=>
@@ -71,13 +72,14 @@ for(let i = 0; i < 16; i++)
         {
             clickedOperators = '';
             clickedOperators += i;
-                    if(i === 13)
+                    if(i === 16)
                         {
                         clickedNumberOne = '';
                         clickedNumberTwo = '';
                         clickedOperators = '';
                         display.textContent = `0`;
                         }
+                    
         return;
         }
         if(i < 10 && clickedOperators !== '' && clickedNumberOne !== '')
