@@ -93,7 +93,7 @@ let whenBtnClicked = function(btnClicked)
     }
     else if(btnClicked === 13)
     {
-        display.textContent = `${HEllO}`;
+        display.textContent = `:)`;
     }
 }
 
