@@ -55,6 +55,7 @@ let display = document.querySelector("#display");
 let clickedNumberOne = '';
 let clickedNumberTwo = '';
 let clickedOperators = '';
+let clearingNumber = 0;
 
 for(let i = 0; i < 18; i++)
 {
@@ -66,29 +67,33 @@ for(let i = 0; i < 18; i++)
             clickedNumberOne += `${i}`;
             display.textContent = `${clickedNumberOne}`;
         }
-        else if(i > 9 && clickedNumberOne !== '' && clickedNumberTwo ==='')
+        if(i > 9 && clickedNumberOne !== '' && clickedNumberTwo ==='')
         {
             clickedOperators = '';
             clickedOperators += i;
+                    if(i === 17)
+                        {
+                        clickedNumberOne = '';
+                        clickedNumberTwo = '';
+                        clickedOperators = '';
+                        display.textContent = `0`;
+                        }
             return;
+
         }
-        else if(i < 10 && clickedOperators !== '' && clickedNumberOne !== '')
+        if(i < 10 && clickedOperators !== '' && clickedNumberOne !== '')
         {
             clickedNumberTwo += `${i}`;
             display.textContent = `${clickedNumberTwo}`;
         }
-        else if(i === 14 && clickedNumberTwo !== '')
-        {
+        if(i === 14)
+        {   
             display.textContent = `${operate(clickedNumberOne, clickedOperators, clickedNumberTwo)}`;
+            clickedNumberOne = `${operate(clickedNumberOne, clickedOperators, clickedNumberTwo)}`;
+            clickedNumberTwo = ``;
+            clickedOperators = ``;
         }
-        else if(i === 17)
-        {
-            clickedNumberOne = '';
-            clickedNumberTwo = '';
-            clickedOperators = '';
-            display.textContent = `0`;
-        }
-        else if(i === 16)
+        if(i === 16)
         {
             if(clickedNumberTwo !== '')
             {
