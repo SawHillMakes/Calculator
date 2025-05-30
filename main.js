@@ -57,7 +57,7 @@ let clickedNumberTwo = '';
 let clickedOperators = '';
 let clearingNumber = 0;
 
-for(let i = 0; i < 18; i++)
+for(let i = 0; i < 16; i++)
 {
     let buttons = document.querySelector(`.btn${i}`);
     buttons.addEventListener("click", ()=>
@@ -71,15 +71,14 @@ for(let i = 0; i < 18; i++)
         {
             clickedOperators = '';
             clickedOperators += i;
-                    if(i === 17)
+                    if(i === 13)
                         {
                         clickedNumberOne = '';
                         clickedNumberTwo = '';
                         clickedOperators = '';
                         display.textContent = `0`;
                         }
-            return;
-
+        return;
         }
         if(i < 10 && clickedOperators !== '' && clickedNumberOne !== '')
         {
@@ -92,13 +91,6 @@ for(let i = 0; i < 18; i++)
             clickedNumberOne = `${operate(clickedNumberOne, clickedOperators, clickedNumberTwo)}`;
             clickedNumberTwo = ``;
             clickedOperators = ``;
-        }
-        if(i === 16)
-        {
-            if(clickedNumberTwo !== '')
-            {
-                
-            }
         }
     });
 }
